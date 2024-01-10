@@ -1,16 +1,19 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from kivymd.app import MDApp
+from kivy.uix.screenmanager import Screen, ScreenManager
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+class LoginWindow(Screen):
+    pass
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class MainWindow(Screen):
+    pass
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+class AmazonClone(MDApp):
+    def build(self):
+        sm = ScreenManager()
+        sm.add_widget(MainWindow(name='main'))
+        sm.add_widget(LoginWindow(name='login'))
+
+        return sm
