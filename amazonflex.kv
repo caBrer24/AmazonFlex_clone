@@ -1,15 +1,19 @@
 <LoginWindow>
     canvas.before:
-        Color:
-            rgba: (255,255,255, 255)
+        Rectangle:
+            pos: self.pos
+            size: (450, 785)
+            source: 'background_pic.jpg'
 
         Rectangle:
             pos: self.pos
-            size: self.size
-    GridLayout:
-        cols: 1
+            size: (450, 150)
+    BoxLayout:
+        orientation: "vertical"
         padding: 25
         spacing: 10
+
+
         MDFlatButton:
 
             size_hint: (1, None)
