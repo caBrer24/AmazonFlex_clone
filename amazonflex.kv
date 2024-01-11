@@ -1,0 +1,25 @@
+<LoginWindow>
+    canvas.before:
+        Color:
+            rgba: (255,255,255, 255)
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols: 1
+        padding: 25
+        MDRectangleFlatButton:
+            markup: True
+            id: test
+            text: "[b]Create an account[/b]"
+            size_hint: (1, None)
+            line_color: root.main_orange
+            text_color: root.main_orange
+            line_width: 1.3
+<MainWindow>
+    GridLayout:
+        cols: 1
+        MDFillRoundFlatButton:
+            id: test
+            text: "Test"
