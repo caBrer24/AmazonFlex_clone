@@ -17,7 +17,7 @@
 
 
         MDFlatButton:
-
+            id: sign_in_amazon_button
             size_hint: (1, None)
             text: "[b]Sign in with Amazon[/b]"
             theme_text_color: "Custom"
@@ -28,8 +28,9 @@
 
 
         MDRectangleFlatButton:
+            id: create_account
             markup: True
-            id: test
+            id: create_account
             text: "[b]Create an account[/b]"
             size_hint: (1, None)
             line_color: root.main_orange
@@ -45,19 +46,20 @@
 
         Rectangle:
             pos: self.pos
-            size: (450, 150)
+            size: (450, 300)
     BoxLayout:
         orientation: "vertical"
         spacing: 10
         padding: 20
 
         MDLabel:
-
+            id: sign_in_amazon_label
             bold: True
             text: "Sign in with your\nAmazon.com account"
             color: 'black'
 
         MDTextField:
+            id: email
             mode: 'rectangle'
             size_hint: 0.7, None
             background_color: "black"
@@ -72,6 +74,7 @@
             line_color_focus: "FF9843"
 
         MDTextField:
+            id: password
             mode: 'rectangle'
             size_hint: 0.7, None
             cursor_color: "FF9843"
@@ -87,19 +90,23 @@
             line_color_focus: "FF9843"
 
         MDFlatButton:
-            background_disabled_normal: ''
-            size_hint: (1, None)
-            text: "[b]Sign in[/b]"
+            id: sign_in_button
+            theme_text_color: "Custom"
             text_color: "white"
+            size_hint: (1, None)
+            text: "Sign in"
+
             md_bg_color: "FF9843"
-            disabled: False
+
 
 
         MDTextButton:
+            id: forgot_pw
             text: "Forgot password"
             pos_hint: {"center_x": 0.5}
             color: "FF9843"
             font_size: "13sp"
+            bold: True
 
 
 <MainWindow>
