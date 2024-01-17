@@ -55,39 +55,34 @@
         MDLabel:
             id: sign_in_amazon_label
             bold: True
-            text: "Sign in with your\nAmazon.com account"
+            text: "Sign in with your Amazon.com account"
             color: 'black'
 
         MDTextField:
             id: email
             mode: 'rectangle'
-            size_hint: 0.7, None
-            background_color: "black"
-            foreground_color: "white"
+            size_hint: 0.8, None
             cursor_color: "FF9843"
             height: "25dp"
-            font_size: "10sp"
+            font_size: "13sp"
             hint_text: "Username or email address"
             multiline: False
-            color_mode: 'primary'
             line_color_normal: "FF9843"
-            line_color_focus: "FF9843"
 
         MDTextField:
             id: password
+            color_mode: "custom"
             mode: 'rectangle'
-            size_hint: 0.7, None
-            cursor_color: "FF9843"
-            background_color: "black"
-            foreground_color: "white"
+            size_hint: 0.8, None
             height: "25dp"
             font_size: "13sp"
             hint_text: "Password"
             password: True
+            password_mask: "•"
             multiline: False
-            color_mode: "accent"
             line_color_normal: "FF9843"
-            line_color_focus: "FF9843"
+
+
 
         MDFlatButton:
             id: sign_in_button
