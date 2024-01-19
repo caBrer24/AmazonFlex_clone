@@ -46,43 +46,63 @@
 
         Rectangle:
             pos: self.pos
-            size: (450, 300)
+            size: (450, 420)
     BoxLayout:
         orientation: "vertical"
         spacing: 10
         padding: 20
 
-        MDLabel:
-            id: sign_in_amazon_label
-            bold: True
-            text: "Sign in with your Amazon.com account"
-            color: 'black'
+        FloatLayout:
+
+            MDLabel:
+                pos_hint: {"center_x": 0.5, "center_y": 0.05}
+                id: sign_in_amazon_label
+                font_size: "18sp"
+                bold: True
+                text: "Sign in with your\nAmazon.com account"
+                color: 'black'
 
         MDTextField:
             id: email
             mode: 'rectangle'
             size_hint: 0.8, None
             cursor_color: "FF9843"
-            height: "25dp"
-            font_size: "13sp"
+
+            font_size: "11sp"
             hint_text: "Username or email address"
             multiline: False
-            line_color_normal: "FF9843"
+            line_color_normal: "grey"
 
         MDTextField:
-            id: password
+            id: password_input
             color_mode: "custom"
             mode: 'rectangle'
             size_hint: 0.8, None
-            height: "25dp"
-            font_size: "13sp"
+            font_size: "11sp"
             hint_text: "Password"
             password: True
             password_mask: "•"
             multiline: False
-            line_color_normal: "FF9843"
+            line_color_normal: "grey"
+
+        GridLayout:
+            cols: 2
+            size_hint: 1, None
+            pos_hint: {"center_x": 0.22}
+            spacing: -100
+
+            MDCheckbox:
+
+                pos_hint: {"center_x": 0.9}
+                size: "48dp", "48dp"
+                on_active: app.on_checkbox_active(*args)
+
+            MDLabel:
 
 
+                text: "Show password"
+                font_size: "13sp"
+                color: "black"
 
         MDFlatButton:
             id: sign_in_button
@@ -98,10 +118,11 @@
         MDTextButton:
             id: forgot_pw
             text: "Forgot password"
-            pos_hint: {"center_x": 0.5}
+            size_hint: 1, None
+            pos_hint: {"center_x": 0.85}
             color: "FF9843"
             font_size: "13sp"
-            bold: True
+
 
 
 <MainWindow>

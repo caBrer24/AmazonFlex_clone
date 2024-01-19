@@ -28,6 +28,10 @@ class AmazonFlex(MDApp):
 
         return sm
 
+    def on_checkbox_active(self, checkbox, value):
+        if value:
+            self.root.get_screen('credentials').ids.password_input.password = False
+
 
 if __name__ == "__main__":
     AmazonFlex().run()
