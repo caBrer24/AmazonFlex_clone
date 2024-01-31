@@ -123,6 +123,8 @@
             text: "Sign in"
 
             md_bg_color: "FF9843"
+            on_release:
+                root.manager.current = 'main'
 
 
 
@@ -133,6 +135,8 @@
             pos_hint: {"center_x": 0.85}
             color: "FF9843"
             font_size: "13sp"
+            on_release:
+                root.manager.current = "forgot_pass"
 
 <CreateAcc>
     canvas.before:
@@ -250,9 +254,145 @@
             Image:
                 source: "assets/apple.png"
 
+<ForgotPass>
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+
+        MDIconButton:
+            id: back_arrow
+            size_hint: 1, .05
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.03}
+            user_font_size: "30sp"
+            theme_icon_color: "Custom"
+            icon_color: "FF9843"
+            on_release:
+                root.manager.current = "credentials"
+
+        FloatLayout:
+
+            MDLabel:
+                pos_hint: {"center_x": 0.5, "center_y": 0.90}
+                id: create_password
+                font_size: "19sp"
+                bold: True
+                text: "Create a new password!"
+                color: 'black'
+
+
+
+            MDTextField:
+                pos_hint: {"center_x": 0.4, "center_y": 0.75}
+                id: email
+                mode: 'rectangle'
+                size_hint: 0.8, None
+                cursor_color: "FF9843"
+                font_size: "11sp"
+                hint_text: "Email"
+                multiline: False
+                line_color_normal: "grey"
+
+
+
+            MDTextField:
+                pos_hint: {"center_x": 0.4, "center_y": 0.6}
+                id: new_password
+                mode: 'rectangle'
+                size_hint: 0.8, None
+                cursor_color: "FF9843"
+                font_size: "11sp"
+                hint_text: "New password"
+                multiline: False
+                password: True
+                password_mask: "•"
+                line_color_normal: "grey"
+
+            MDTextField:
+                pos_hint: {"center_x": 0.4, "center_y": 0.45}
+                id: confirm_pass
+                mode: 'rectangle'
+                size_hint: 0.8, None
+                cursor_color: "FF9843"
+                font_size: "11sp"
+                hint_text: "Confirm password"
+                multiline: False
+                password: True
+                password_mask: "•"
+                line_color_normal: "grey"
+
+
+        MDFlatButton:
+            id: sign_in_button
+            theme_text_color: "Custom"
+            text_color: "white"
+            size_hint: (1, None)
+            text: "Reset password"
+
+            md_bg_color: "FF9843"
+            on_release:
+                root.manager.current = "reset_pass"
+
+<ResetPass>
+    MDLabel:
+        halign: "center"
+        text: "Your password has been reset!"
+
 <MainWindow>
-    GridLayout:
-        cols: 1
-        MDFillRoundFlatButton:
-            id: test
-            text: "Test"
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+                MDLabel:
+                    text: "Screen 1"
+
+
+            MDScreen:
+                MDLabel:
+                    text: "Screen 2"
+
+
+
+
+
+
+
+        MDNavigationDrawer:
+
+            id: nav_drawer
+            radius: 0, dp(16), dp(16), 0
+
+            MDNavigationDrawerMenu:
+                MDNavigationDrawerHeader:
+                    padding: "16dp", 0, "16dp", "16dp"
+                    spacing: "16dp"
+
+                    MDIcon:
+                        icon: "card-account-mail-outline"
+                        theme_font_size: "Custom"
+                        font_size: "56sp"
+                        theme_icon_color: "Custom"
+                        icon_color: "black"
+
+                    MDLabel:
+                        text: "Gmail"
+
+                        role: "medium"
+                        theme_line_height: "Custom"
+                        line_height: 0
+                        adaptive_height: True
+                        theme_text_color: "Custom"
+                        text_color: "black"
+
+                MDNavigationDrawerLabel:
+                    text: "accaount@gmail.com"
+                    theme_text_color: "Custom"
+                    text_color: "black"
+

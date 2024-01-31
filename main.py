@@ -22,6 +22,14 @@ class CreateAcc(Screen):
     pass
 
 
+class ForgotPass(Screen):
+    pass
+
+
+class ResetPass(Screen):
+    pass
+
+
 class MainWindow(Screen):
     pass
 
@@ -29,6 +37,8 @@ class MainWindow(Screen):
 class AmazonFlex(MDApp):
     def build(self):
         sm = ScreenManager(transition=NoTransition())
+        sm.add_widget(ForgotPass(name='forgot_pass'))
+        sm.add_widget(ResetPass(name='reset_pass'))
         sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(CreateAcc(name="create_account"))
         sm.add_widget(LoginWindow(name='login'))
