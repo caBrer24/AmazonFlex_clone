@@ -4,13 +4,21 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import NoTransition
 
 Window.size = (350, 625)
-#•••••••
-#TODO fix text input fields not able to same color as line (always light blue)
+
+
+# •••••••
+# TODO screens for everything else
+
+
 class LoginWindow(Screen):
     main_orange = "FF9843"
 
 
 class Credentials(Screen):
+    pass
+
+
+class CreateAcc(Screen):
     pass
 
 
@@ -21,8 +29,9 @@ class MainWindow(Screen):
 class AmazonFlex(MDApp):
     def build(self):
         sm = ScreenManager(transition=NoTransition())
-        sm.add_widget(Credentials(name='credentials'))
+        sm.add_widget(CreateAcc(name="create_account"))
         sm.add_widget(LoginWindow(name='login'))
+        sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(MainWindow(name='main'))
         self.theme_cls.primary_palette = "Orange"
 

@@ -123,7 +123,99 @@
             color: "FF9843"
             font_size: "13sp"
 
+<CreateAcc>
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: (450, 785)
+            source: 'back_pic.png'
 
+        Rectangle:
+            pos: self.pos
+            size: (450, 515)
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 20
+
+        FloatLayout:
+
+            MDLabel:
+                pos_hint: {"center_x": 0.5, "center_y": 0.05}
+                id: sign_in_amazon_label
+                font_size: "17sp"
+                bold: True
+                text: "Create a new account"
+                color: 'black'
+
+        MDTextField:
+            id: username
+            mode: 'rectangle'
+            size_hint: 0.8, None
+            cursor_color: "FF9843"
+
+            font_size: "11sp"
+            hint_text: "Username"
+            multiline: False
+            line_color_normal: "grey"
+
+        MDTextField:
+
+            id: email
+            mode: 'rectangle'
+            size_hint: 0.8, None
+            cursor_color: "FF9843"
+            font_size: "11sp"
+            hint_text: "Email"
+            multiline: False
+            line_color_normal: "grey"
+
+        MDTextField:
+            id: password_input
+            color_mode: "custom"
+            mode: 'rectangle'
+            size_hint: 0.8, None
+            font_size: "11sp"
+            hint_text: "Password"
+            password: True
+            password_mask: "•"
+            multiline: False
+            line_color_normal: "grey"
+
+        MDTextField:
+            id: password_confirm
+            color_mode: "custom"
+            mode: 'rectangle'
+            size_hint: 0.8, None
+            font_size: "11sp"
+            hint_text: "Confirm password"
+            password: True
+            password_mask: "•"
+            multiline: False
+            line_color_normal: "grey"
+
+
+
+        MDFlatButton:
+            id: sign_in_button
+            theme_text_color: "Custom"
+            text_color: "white"
+            size_hint: (1, None)
+            text: "Create account"
+
+            md_bg_color: "FF9843"
+            on_release:
+                root.manager.current = "credentials"
+
+
+
+        MDTextButton:
+            id: forgot_pw
+            text: "Forgot password"
+            size_hint: 1, None
+            pos_hint: {"center_x": 0.85}
+            color: "FF9843"
+            font_size: "13sp"
 
 <MainWindow>
     GridLayout:
