@@ -29,9 +29,9 @@ class MainWindow(Screen):
 class AmazonFlex(MDApp):
     def build(self):
         sm = ScreenManager(transition=NoTransition())
+        sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(CreateAcc(name="create_account"))
         sm.add_widget(LoginWindow(name='login'))
-        sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(MainWindow(name='main'))
         self.theme_cls.primary_palette = "Orange"
 

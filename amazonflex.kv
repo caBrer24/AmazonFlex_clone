@@ -53,7 +53,16 @@
         orientation: "vertical"
         spacing: 10
         padding: 20
-
+        MDIconButton:
+            id: back_arrow
+            size_hint: 1, .05
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.03}
+            user_font_size: "30sp"
+            theme_icon_color: "Custom"
+            icon_color: "white"
+            on_release:
+                root.manager.current = "login"
         FloatLayout:
 
             MDLabel:
