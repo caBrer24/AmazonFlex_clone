@@ -350,22 +350,28 @@
 
 <MainWindow>
     MDNavigationLayout:
+        id: nav_draw
+
 
         MDScreenManager:
 
             MDScreen:
-                MDLabel:
-                    text: "Screen 1"
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Navigation Drawer"
+                        elevation: 0
+                        md_bg_color: 1, 1, 1, 1
+                        specific_text_color: "white"
+                        left_action_items: [['menu', lambda x: nav_draw.toggle_nav_drawer()]]
+
+
 
 
             MDScreen:
                 MDLabel:
                     text: "Screen 2"
-
-
-
-
-
 
 
         MDNavigationDrawer:
@@ -396,7 +402,7 @@
                         text_color: "black"
 
                 MDNavigationDrawerLabel:
-                    text: "accaount@gmail.com"
+                    text: "account@gmail.com"
                     theme_text_color: "Custom"
                     text_color: "black"
 

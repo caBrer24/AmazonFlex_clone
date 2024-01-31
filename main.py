@@ -7,7 +7,8 @@ Window.size = (350, 625)
 
 
 # •••••••
-# TODO screens for everything else
+# TODO main window
+# TODO figure out navigation drawer and tool bar
 
 
 class LoginWindow(Screen):
