@@ -79,7 +79,7 @@
             size_hint: 0.8, None
             cursor_color: "FF9843"
 
-            font_size: "11sp"
+            font_size: "12sp"
             hint_text: "Username or email address"
             multiline: False
             line_color_normal: "grey"
@@ -89,7 +89,7 @@
             color_mode: "custom"
             mode: 'rectangle'
             size_hint: 0.8, None
-            font_size: "11sp"
+            font_size: "12sp"
             hint_text: "Password"
             password: True
             password_mask: "•"
@@ -178,18 +178,18 @@
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Username"
                 multiline: False
                 line_color_normal: "grey"
 
             MDTextField:
                 pos_hint: {"center_x": 0.4, "center_y": 0.55}
-                id: username
+                id: email
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Email"
                 multiline: False
                 line_color_normal: "grey"
@@ -198,12 +198,14 @@
 
             MDTextField:
                 pos_hint: {"center_x": 0.4, "center_y": 0.35}
-                id: username
+                id: password
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Password"
+                password: True
+                password_mask: "•"
                 multiline: False
                 line_color_normal: "grey"
 
@@ -211,12 +213,14 @@
 
             MDTextField:
                 pos_hint: {"center_x": 0.4, "center_y": 0.15}
-                id: username
+                id: confirm_pass
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Confirm password"
+                password: True
+                password_mask: "•"
                 multiline: False
                 line_color_normal: "grey"
 
@@ -294,7 +298,7 @@
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Email"
                 multiline: False
                 line_color_normal: "grey"
@@ -307,7 +311,7 @@
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "New password"
                 multiline: False
                 password: True
@@ -320,7 +324,7 @@
                 mode: 'rectangle'
                 size_hint: 0.8, None
                 cursor_color: "FF9843"
-                font_size: "11sp"
+                font_size: "12sp"
                 hint_text: "Confirm password"
                 multiline: False
                 password: True
