@@ -12,7 +12,7 @@ Window.size = (350, 625)
 
 
 class LoginWindow(Screen):
-    main_orange = "FF9843"
+    pass
 
 
 class Credentials(Screen):
@@ -36,13 +36,16 @@ class MainWindow(Screen):
 
 
 class AmazonFlex(MDApp):
+    main_orange = "FF9843"
+    disabled_orange = "F7B787"
+    disabled_text_orange = "EE7214"
     def build(self):
         sm = ScreenManager(transition=NoTransition())
+        sm.add_widget(LoginWindow(name='login'))
         sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(ForgotPass(name='forgot_pass'))
         sm.add_widget(ResetPass(name='reset_pass'))
         sm.add_widget(CreateAcc(name="create_account"))
-        sm.add_widget(LoginWindow(name='login'))
         sm.add_widget(MainWindow(name='main'))
         self.theme_cls.primary_palette = "Orange"
 
