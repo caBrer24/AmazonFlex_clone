@@ -38,9 +38,9 @@ class MainWindow(Screen):
 class AmazonFlex(MDApp):
     def build(self):
         sm = ScreenManager(transition=NoTransition())
+        sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(ForgotPass(name='forgot_pass'))
         sm.add_widget(ResetPass(name='reset_pass'))
-        sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(CreateAcc(name="create_account"))
         sm.add_widget(LoginWindow(name='login'))
         sm.add_widget(MainWindow(name='main'))
@@ -54,6 +54,11 @@ class AmazonFlex(MDApp):
         else:
             self.root.get_screen('credentials').ids.password_input.password = True
 
+    def signin_disable(self):
+        passw = self.root.get_screen('credentials').ids.password_input.text
+        email = self.root.get_screen('credentials').ids.email.text
+        if passw == "" and email == "":
+            self.root.get_screen('credentials').ids.sign_in_button.disabled = True
 
 if __name__ == "__main__":
     AmazonFlex().run()

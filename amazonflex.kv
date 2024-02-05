@@ -120,9 +120,11 @@
             theme_text_color: "Custom"
             text_color: "white"
             size_hint: (1, None)
-            text: "Sign in"
-
+            background_disabled_normal : ""
             md_bg_color: "FF9843"
+            disabled_color: "FF9843"
+            text: "Sign in"
+            disabled: True if password_input.text == "" or email.text == "" else False
             on_release:
                 root.manager.current = 'main'
 
