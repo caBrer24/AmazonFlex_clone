@@ -104,8 +104,8 @@
 
             MDCheckbox:
 
-                pos_hint: {"center_x": 0.9}
-                size: "48dp", "48dp"
+                pos_hint: {"center_x": 0.5}
+
                 on_active: app.on_checkbox_active(*args)
 
             MDLabel:
@@ -367,59 +367,63 @@
 
 <MainWindow>
     MDNavigationLayout:
-        id: nav_draw
-
 
         MDScreenManager:
 
             MDScreen:
-                BoxLayout:
-                    orientation: 'vertical'
+                id: screen_1
 
+                MDBoxLayout:
+                    orientation: 'vertical'
                     MDTopAppBar:
-                        title: "Navigation Drawer"
+
                         elevation: 0
-                        md_bg_color: 1, 1, 1, 1
-                        specific_text_color: "white"
-                        left_action_items: [['menu', lambda x: nav_draw.toggle_nav_drawer()]]
+                        left_action_items: [['menu', lambda x: nav_draw.set_state('toggle')]]
+                    Widget:
 
 
 
 
             MDScreen:
+                id: screen_2
                 MDLabel:
                     text: "Screen 2"
 
 
         MDNavigationDrawer:
 
-            id: nav_drawer
+            id: nav_draw
             radius: 0, dp(16), dp(16), 0
+            enable_swiping: False
+            scrim_color: app.color_scrim
+            padding: -3
 
             MDNavigationDrawerMenu:
+
                 MDNavigationDrawerHeader:
-                    padding: "16dp", 0, "16dp", "16dp"
+                    padding: "16dp", 0, "64dp", "16dp"
                     spacing: "16dp"
 
-                    MDIcon:
-                        icon: "card-account-mail-outline"
-                        theme_font_size: "Custom"
-                        font_size: "56sp"
-                        theme_icon_color: "Custom"
-                        icon_color: "black"
+                    MDBoxLayout:
 
-                    MDLabel:
-                        text: "Gmail"
+                        orientation: "vertical"
+                        padding: -25
+                        spacing: 10
+                        MDIcon:
+                            icon: "card-account-mail-outline"
+                            theme_font_size: "Custom"
+                            font_size: "56sp"
+                            theme_icon_color: "Custom"
+                            icon_color: "black"
 
-                        role: "medium"
-                        theme_line_height: "Custom"
-                        line_height: 0
-                        adaptive_height: True
-                        theme_text_color: "Custom"
-                        text_color: "black"
+                        MDNavigationDrawerLabel:
+                            pos_hint: {"center_x": 0.15, "center_y": 0.5}
+                            text: "Carlos Cabrera"
+                            theme_text_color: "Custom"
+                            text_color: "black"
 
                 MDNavigationDrawerLabel:
-                    text: "account@gmail.com"
+                    pos_hint: {"center_x": 0.15, "center_y": 0.5}
+                    text: "Carlos Cabrera"
                     theme_text_color: "Custom"
                     text_color: "black"
-

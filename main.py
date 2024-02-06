@@ -9,7 +9,7 @@ Window.size = (350, 625)
 # •••••••
 # TODO main window
 # TODO figure out navigation drawer and tool bar
-
+# TODO ScrollView, AppTopBar
 
 class LoginWindow(Screen):
     pass
@@ -36,17 +36,20 @@ class MainWindow(Screen):
 
 
 class AmazonFlex(MDApp):
+
     main_orange = "FF9843"
     disabled_orange = "F7B787"
     disabled_text_orange = "EE7214"
+    color_scrim = 0.24, 0.23, 0.25, 0.35
     def build(self):
         sm = ScreenManager(transition=NoTransition())
+        sm.add_widget(MainWindow(name='main'))
         sm.add_widget(LoginWindow(name='login'))
         sm.add_widget(Credentials(name='credentials'))
         sm.add_widget(ForgotPass(name='forgot_pass'))
         sm.add_widget(ResetPass(name='reset_pass'))
         sm.add_widget(CreateAcc(name="create_account"))
-        sm.add_widget(MainWindow(name='main'))
+
         self.theme_cls.primary_palette = "Orange"
 
         return sm
@@ -62,6 +65,7 @@ class AmazonFlex(MDApp):
         email = self.root.get_screen('credentials').ids.email.text
         if passw == "" and email == "":
             self.root.get_screen('credentials').ids.sign_in_button.disabled = True
+
 
 if __name__ == "__main__":
     AmazonFlex().run()
