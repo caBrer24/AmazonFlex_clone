@@ -27,6 +27,7 @@
                 root.manager.current = "credentials"
 
 
+
         MDRectangleFlatButton:
             id: create_account
             markup: True
@@ -38,6 +39,7 @@
             line_width: 1.3
             on_release:
                 root.manager.current = 'create_account'
+
 
 <Credentials>
     canvas.before:
@@ -366,6 +368,16 @@
         text: "Your password has been reset!"
 
 <MainWindow>
+
+    MDTopAppBar:
+        title: ""
+        pos_hint: {"top": 1}
+        md_bg_color: app.theme_cls.accent_dark
+        specific_text_color: 'orange'
+        elevation: 0
+        left_action_items: [['menu', lambda x: nav_draw.set_state('toggle')]]
+        right_action_items: [['message-outline'], ['information-outline']]
+
     MDNavigationLayout:
 
         MDScreenManager:
@@ -373,13 +385,8 @@
             MDScreen:
                 id: screen_1
 
-                MDBoxLayout:
-                    orientation: 'vertical'
-                    MDTopAppBar:
 
-                        elevation: 0
-                        left_action_items: [['menu', lambda x: nav_draw.set_state('toggle')]]
-                    Widget:
+
 
 
 
@@ -397,33 +404,65 @@
             enable_swiping: False
             scrim_color: app.color_scrim
             padding: -3
+            background_color: "#3D3B40"
 
-            MDNavigationDrawerMenu:
 
-                MDNavigationDrawerHeader:
-                    padding: "16dp", 0, "64dp", "16dp"
-                    spacing: "16dp"
 
-                    MDBoxLayout:
+            MDBoxLayout:
 
-                        orientation: "vertical"
-                        padding: -25
-                        spacing: 10
-                        MDIcon:
-                            icon: "card-account-mail-outline"
-                            theme_font_size: "Custom"
-                            font_size: "56sp"
-                            theme_icon_color: "Custom"
-                            icon_color: "black"
+                orientation: "vertical"
+                padding: [-35, -20, -35, -35]
+                pos_hint: {"center_y": 0.1}
+                spacing: 7
 
-                        MDNavigationDrawerLabel:
-                            pos_hint: {"center_x": 0.15, "center_y": 0.5}
-                            text: "Carlos Cabrera"
-                            theme_text_color: "Custom"
-                            text_color: "black"
+                Image:
+
+                    pos_hint: {"center_x": 0.25}
+                    source: "assets/pfp.jpg"
 
                 MDNavigationDrawerLabel:
-                    pos_hint: {"center_x": 0.15, "center_y": 0.5}
+                    pos_hint: {"center_x": 0.30}
                     text: "Carlos Cabrera"
-                    theme_text_color: "Custom"
+
                     text_color: "black"
+
+                MDFloatLayout:
+
+
+                    MDNavigationDrawerDivider:
+                        pos_hint: {"center_x": 0.20, "center_y": 1.25}
+                        size_hint: 2, None
+
+
+            ScrollView:
+
+                MDList:
+                    OneLineListItem:
+
+                        text: "Updates"
+
+
+
+                    OneLineListItem:
+                        text: "Settings"
+
+                    OneLineListItem:
+                        text: "Dashboard"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

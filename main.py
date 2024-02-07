@@ -50,8 +50,9 @@ class AmazonFlex(MDApp):
         sm.add_widget(ResetPass(name='reset_pass'))
         sm.add_widget(CreateAcc(name="create_account"))
 
+        self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Orange"
-
+        self.theme_cls.accent_palette = "Gray"
         return sm
 
     def on_checkbox_active(self, checkbox, value):
@@ -66,6 +67,8 @@ class AmazonFlex(MDApp):
         if passw == "" and email == "":
             self.root.get_screen('credentials').ids.sign_in_button.disabled = True
 
+    def app_theme(self):
+        self.theme_cls.primary_palette = "Orange"
 
 if __name__ == "__main__":
     AmazonFlex().run()
