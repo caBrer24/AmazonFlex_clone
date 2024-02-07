@@ -370,6 +370,7 @@
 <MainWindow>
 
     MDTopAppBar:
+        id: toolbar
         title: ""
         pos_hint: {"top": 1}
         md_bg_color: app.theme_cls.accent_dark
@@ -378,76 +379,105 @@
         left_action_items: [['menu', lambda x: nav_draw.set_state('toggle')]]
         right_action_items: [['message-outline'], ['information-outline']]
 
+
     MDNavigationLayout:
 
         MDScreenManager:
-
+            id: main_screens
             MDScreen:
                 id: screen_1
 
-
-
-
-
-
+                MDLabel:
+                    text: "Screen 1"
+                    halign: "center"
 
             MDScreen:
-                id: screen_2
+                name: "screen_2"
                 MDLabel:
                     text: "Screen 2"
-
+                    halign: "center"
 
         MDNavigationDrawer:
 
             id: nav_draw
             radius: 0, dp(16), dp(16), 0
-            enable_swiping: False
+            enable_swiping: True
             scrim_color: app.color_scrim
-            padding: -3
-            background_color: "#3D3B40"
-
-
+            padding: 0
+            background_color: app.theme_cls.accent_dark
 
             MDBoxLayout:
 
                 orientation: "vertical"
-                padding: [-35, -20, -35, -35]
-                pos_hint: {"center_y": 0.1}
+                padding: 15
+
                 spacing: 7
 
-                Image:
-
-                    pos_hint: {"center_x": 0.25}
-                    source: "assets/pfp.jpg"
+                MDAnchorLayout:
+                    anchor_x: "left"
+                    size_hint_y: None
+                    height: pic.height
+                    Image:
+                        id: pic
+                        pos_hint: {"center_x": 0.25}
+                        source: "assets/pfp.jpg"
 
                 MDNavigationDrawerLabel:
-                    pos_hint: {"center_x": 0.30}
+                    pos_hint: {"center_x": 0.77}
                     text: "Carlos Cabrera"
 
                     text_color: "black"
 
-                MDFloatLayout:
+
+                ScrollView:
+
+                    MDList:
+                        OneLineListItem:
+
+                            text: "Updates"
+                            on_release:
+                                main_screens.current = "screen_2"
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Schedule"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Dashboard"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Learning Portal"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Feedback"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Settings"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
+
+                        OneLineListItem:
+                            text: "Connected Vehicle"
+                            on_release:
+                                toolbar.title = self.text
+                                nav_draw.set_state('close')
 
 
-                    MDNavigationDrawerDivider:
-                        pos_hint: {"center_x": 0.20, "center_y": 1.25}
-                        size_hint: 2, None
 
-
-            ScrollView:
-
-                MDList:
-                    OneLineListItem:
-
-                        text: "Updates"
-
-
-
-                    OneLineListItem:
-                        text: "Settings"
-
-                    OneLineListItem:
-                        text: "Dashboard"
 
 
 
