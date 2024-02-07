@@ -7,9 +7,7 @@ Window.size = (350, 625)
 
 
 # •••••••
-# TODO main window
-# TODO figure out navigation drawer and tool bar
-# TODO ScrollView, AppTopBar
+# TODO Remove icons from topbar when switching to another screen
 
 class LoginWindow(Screen):
     pass

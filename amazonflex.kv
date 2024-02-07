@@ -367,11 +367,17 @@
         halign: "center"
         text: "Your password has been reset!"
 
+
+#: import NoTransition kivy.uix.screenmanager.NoTransition
+
 <MainWindow>
 
     MDTopAppBar:
+        padding: -3
+        spacing: 25
+        size_hint: 1, 0.08
         id: toolbar
-        title: ""
+        title: "                 Updates"
         pos_hint: {"top": 1}
         md_bg_color: app.theme_cls.accent_dark
         specific_text_color: 'orange'
@@ -382,20 +388,56 @@
 
     MDNavigationLayout:
 
-        MDScreenManager:
+        ScreenManager:
             id: main_screens
+            transition: NoTransition()
+
             MDScreen:
-                id: screen_1
+                name: "updates"
 
                 MDLabel:
-                    text: "Screen 1"
+                    text: "Updates"
                     halign: "center"
 
             MDScreen:
-                name: "screen_2"
+                name: "schedule"
                 MDLabel:
-                    text: "Screen 2"
+                    text: "schedule"
                     halign: "center"
+
+            MDScreen:
+                name: "dashboard"
+                MDLabel:
+                    text: "dashboard"
+                    halign: "center"
+
+            MDScreen:
+                name: "learning"
+                MDLabel:
+                    text: "learning"
+                    halign: "center"
+
+            MDScreen:
+                name: "feedback"
+                MDLabel:
+                    text: "feedback"
+                    halign: "center"
+
+
+            MDScreen:
+                name: "settings"
+                MDLabel:
+                    text: "settings"
+                    halign: "center"
+
+            MDScreen:
+                name: "vehicles"
+                MDLabel:
+                    text: "vehicles"
+                    halign: "center"
+
+
+
 
         MDNavigationDrawer:
 
@@ -436,45 +478,60 @@
 
                             text: "Updates"
                             on_release:
-                                main_screens.current = "screen_2"
-                                toolbar.title = self.text
+                                main_screens.current = "updates"
+                                toolbar.title = f"               {self.text}"
                                 nav_draw.set_state('close')
+                                toolbar.right_action_items = [['message-outline'], ['information-outline']]
 
                         OneLineListItem:
                             text: "Schedule"
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.title = f"               {self.text}"
                                 nav_draw.set_state('close')
+                                main_screens.current = "schedule"
+                                toolbar.right_action_items = [['message-outline'], ['information-outline']]
 
                         OneLineListItem:
                             text: "Dashboard"
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.right_action_items = []
+                                toolbar.title = f"               {self.text}"
                                 nav_draw.set_state('close')
+                                main_screens.current = "dashboard"
+
 
                         OneLineListItem:
                             text: "Learning Portal"
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.title = f"          {self.text}"
                                 nav_draw.set_state('close')
+                                toolbar.right_action_items = []
+                                main_screens.current = "learning"
 
                         OneLineListItem:
                             text: "Feedback"
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.title = f"                 {self.text}"
                                 nav_draw.set_state('close')
+                                toolbar.right_action_items = []
+                                main_screens.current = "feedback"
 
                         OneLineListItem:
                             text: "Settings"
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.title = f"                  {self.text}"
                                 nav_draw.set_state('close')
+                                toolbar.right_action_items = []
+                                main_screens.current = "settings"
 
                         OneLineListItem:
                             text: "Connected Vehicle"
+                            text_size: 4
                             on_release:
-                                toolbar.title = self.text
+                                toolbar.title = f"        {self.text}"
                                 nav_draw.set_state('close')
+                                toolbar.right_action_items = []
+                                main_screens.current = "vehicles"
 
 
 
