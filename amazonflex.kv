@@ -406,8 +406,8 @@
             MDScreen:
                 name: "schedule"
                 MDLabel:
-                    text: "schedule"
-                    halign: "center"
+                    text: "You don't have upcoming work scheduled for today."
+                    pos_hint: {"center_x": 0.536, "top": 1.37}
 
             MDScreen:
                 name: "dashboard"
@@ -430,9 +430,60 @@
 
             MDScreen:
                 name: "settings"
-                MDLabel:
-                    text: "settings"
-                    halign: "center"
+
+                MDList:
+                    pos_hint: {"top": 0.93}
+
+                    OneLineRightIconListItem:
+                        text: "Personal information"
+                        secondary_text: "Secondary text here"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+                    TwoLineRightIconListItem:
+                        text: "Phone number"
+                        secondary_text: "+1 222-333-4444"
+
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+
+                    TwoLineRightIconListItem:
+                        text: "Version info"
+                        secondary_text: "1.0"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+                    TwoLineRightIconListItem:
+                        text: "Transportation method"
+                        secondary_text: "Drive"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+                    TwoLineRightIconListItem:
+                        text: "Display theme"
+                        secondary_text: "Light"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+                    OneLineRightIconListItem:
+                        text: "View legal information"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+                    OneLineRightIconListItem:
+                        text: "Offline Maps"
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
+
 
             MDScreen:
                 name: "vehicles"
@@ -481,6 +532,7 @@
                         OneLineListItem:
 
                             text: "Updates"
+
                             on_release:
                                 main_screens.current = "updates"
                                 toolbar.title = f"                 {self.text}"
@@ -523,7 +575,7 @@
                         OneLineListItem:
                             text: "Settings"
                             on_release:
-                                toolbar.title = f"                  {self.text}"
+                                toolbar.title = f"                {self.text}"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "settings"
