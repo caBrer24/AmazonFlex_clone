@@ -7,7 +7,7 @@ Window.size = (350, 625)
 
 
 # •••••••
-# TODO Remove icons from topbar when switching to another screen
+
 
 class LoginWindow(Screen):
     pass
@@ -39,6 +39,7 @@ class AmazonFlex(MDApp):
     disabled_orange = "F7B787"
     disabled_text_orange = "EE7214"
     color_scrim = 0.24, 0.23, 0.25, 0.35
+
     def build(self):
         sm = ScreenManager(transition=NoTransition())
         sm.add_widget(MainWindow(name='main'))
@@ -49,8 +50,7 @@ class AmazonFlex(MDApp):
         sm.add_widget(CreateAcc(name="create_account"))
 
         self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "Orange"
-        self.theme_cls.accent_palette = "Gray"
+
         return sm
 
     def on_checkbox_active(self, checkbox, value):

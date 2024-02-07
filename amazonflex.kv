@@ -373,14 +373,18 @@
 <MainWindow>
 
     MDTopAppBar:
+        id: toolbar
+
         padding: -3
         spacing: 25
         size_hint: 1, 0.08
-        id: toolbar
-        title: "                 Updates"
         pos_hint: {"top": 1}
-        md_bg_color: app.theme_cls.accent_dark
-        specific_text_color: 'orange'
+
+        title: "                Updates"
+
+        md_bg_color: "#3D3B40"
+        specific_text_color: "white"
+
         elevation: 0
         left_action_items: [['menu', lambda x: nav_draw.set_state('toggle')]]
         right_action_items: [['message-outline'], ['information-outline']]
@@ -479,7 +483,7 @@
                             text: "Updates"
                             on_release:
                                 main_screens.current = "updates"
-                                toolbar.title = f"               {self.text}"
+                                toolbar.title = f"                 {self.text}"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = [['message-outline'], ['information-outline']]
 
@@ -503,7 +507,7 @@
                         OneLineListItem:
                             text: "Learning Portal"
                             on_release:
-                                toolbar.title = f"          {self.text}"
+                                toolbar.title = f"           {self.text}"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "learning"
@@ -528,7 +532,7 @@
                             text: "Connected Vehicle"
                             text_size: 4
                             on_release:
-                                toolbar.title = f"        {self.text}"
+                                toolbar.title = f"         {self.text}"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "vehicles"
