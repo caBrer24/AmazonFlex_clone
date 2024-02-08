@@ -396,6 +396,7 @@
             id: main_screens
             transition: NoTransition()
 
+
             MDScreen:
                 name: "updates"
 
@@ -467,6 +468,8 @@
                     TwoLineRightIconListItem:
                         text: "Display theme"
                         secondary_text: "Light"
+                        on_release:
+                            main_screens.settings_screen.current = "sett_scr"
 
                         IconRightWidget:
                             icon: "arrow-right"
@@ -484,6 +487,36 @@
                             icon: "arrow-right"
 
 
+                MDBoxLayout:
+
+                    orientation: "vertical"
+                    padding: 20
+                    spacing: 20
+
+                    MDRectangleFlatButton:
+
+                        id: check_updates
+
+                        markup: True
+                        text: "Check for updates"
+                        size_hint: (1, None)
+                        line_color: app.disabled_text_orange
+                        text_color: app.disabled_text_orange
+                        line_width: 1.2
+                        on_release:
+                            app.checking_updates()
+
+                    MDTextButton:
+                        id: sign_out
+                        text: "Sign out"
+                        size_hint: 1, None
+                        pos_hint: {"center_x": 0.92}
+                        color: app.disabled_text_orange
+                        font_size: "13sp"
+                        on_release:
+                            root.manager.current = "login"
+
+
 
             MDScreen:
                 name: "vehicles"
@@ -492,7 +525,15 @@
                     halign: "center"
 
 
+            ScreenManager:
+                id: settings_screen
 
+                MDScreen:
+                    name: "sett_scr"
+
+                    MDLabel:
+                        text: "teset"
+                        halign: "center"
 
         MDNavigationDrawer:
 
@@ -588,6 +629,7 @@
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "vehicles"
+
 
 
 
