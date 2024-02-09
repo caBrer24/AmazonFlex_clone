@@ -404,6 +404,7 @@
                     text: "Updates"
                     halign: "center"
 
+
             MDScreen:
                 name: "schedule"
                 MDLabel:
@@ -469,10 +470,16 @@
                         text: "Display theme"
                         secondary_text: "Light"
                         on_release:
-                            main_screens.settings_screen.current = "sett_scr"
+                            main_screens.current = "display_theme"
+                            toolbar.right_action_items = []
+                            toolbar.title = f"         DISPLAY THEME"
 
                         IconRightWidget:
                             icon: "arrow-right"
+                            on_release:
+                                main_screens.current = "display_theme"
+                                toolbar.right_action_items = []
+                                toolbar.title = f"         DISPLAY THEME"
 
                     OneLineRightIconListItem:
                         text: "View legal information"
@@ -516,6 +523,24 @@
                         on_release:
                             root.manager.current = "login"
 
+            MDScreen:
+                name: "display_theme"
+
+                MDBoxLayout:
+                    MDSwitch:
+
+                        pos_hint: {"center_x": 0.5}
+                        on_active: app.on_switch_active(*args)
+
+
+
+
+                    MDLabel:
+                        text: "test"
+                        halign: "center"
+
+
+
 
 
             MDScreen:
@@ -525,15 +550,7 @@
                     halign: "center"
 
 
-            ScreenManager:
-                id: settings_screen
 
-                MDScreen:
-                    name: "sett_scr"
-
-                    MDLabel:
-                        text: "teset"
-                        halign: "center"
 
         MDNavigationDrawer:
 
@@ -574,6 +591,7 @@
 
                             text: "Updates"
 
+
                             on_release:
                                 main_screens.current = "updates"
                                 toolbar.title = f"                 {self.text}"
@@ -582,6 +600,7 @@
 
                         OneLineListItem:
                             text: "Schedule"
+
                             on_release:
                                 toolbar.title = f"               {self.text}"
                                 nav_draw.set_state('close')
