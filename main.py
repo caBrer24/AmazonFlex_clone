@@ -39,18 +39,14 @@ class ResetPass(Screen):
 class SettingScreen(Screen):
     pass
 
+
 class MainWindow(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
         Clock.schedule_once(self.set_toolbar_font_size)
 
-
     def set_toolbar_font_size(self, *args):
         self.ids.toolbar.ids.label_title.font_size = "14sp"
-
-
-
-
 
 
 class AmazonFlex(MDApp):
