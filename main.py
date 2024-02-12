@@ -13,9 +13,9 @@ Window.size = (350, 625)
 
 # TODO start looking into map implementation, camera, etc
 # TODO slide button tutorial
-# TODO align sign out button in settings
 # TODO Itinerary screen
 # TODO make text smaller on nav_draw
+
 class LoginWindow(Screen):
     pass
 
@@ -54,8 +54,11 @@ class AmazonFlex(MDApp):
     main_orange = "FF9843"
     disabled_orange = "F7B787"
     disabled_text_orange = "EE7214"
-    color_scrim = 0.24, 0.23, 0.25, 0.35
 
+    # navigation drawer
+    color_scrim = 0.24, 0.23, 0.25, 0.75
+
+    # pop up in settings
     dialog = None
 
     def build(self):
@@ -69,7 +72,7 @@ class AmazonFlex(MDApp):
         sm.add_widget(SettingScreen(name="screen_options"))
 
         self.theme_cls.primary_palette = "Orange"
-
+        self.theme_cls.theme_style = "Light"
         return sm
 
     def on_checkbox_active(self, checkbox, value):
@@ -111,8 +114,6 @@ class AmazonFlex(MDApp):
             )
 
         self.dialog.open()
-
-
 
 
 if __name__ == "__main__":

@@ -475,11 +475,11 @@
 
                     TwoLineRightIconListItem:
                         text: "Display theme"
-                        secondary_text: "Light"
+                        secondary_text: "Light" if app.theme_cls.theme_style == "Light" else "Dark"
                         on_release:
                             main_screens.current = "display_theme"
                             toolbar.right_action_items = []
-                            toolbar.title = "DISPLAY THEME"
+                            toolbar.title = "                       DISPLAY THEME"
 
                         IconRightWidget:
                             icon: "arrow-right"
@@ -524,7 +524,8 @@
                         id: sign_out
                         text: "Sign out"
                         size_hint: 1, None
-                        pos_hint: {"center_x": 0.92}
+                        pos_hint: {"center_x": 0.5}
+                        theme_text_color: "Custom"
                         color: app.disabled_text_orange
                         font_size: "13sp"
                         on_release:
@@ -533,18 +534,23 @@
             MDScreen:
                 name: "display_theme"
 
-                MDBoxLayout:
+                GridLayout:
+                    cols: 2
+                    size_hint: 1, 0.12
+                    pos_hint: {"center_x": 0.385, "top": 0.94}
+                    spacing: 165
+
+                    MDLabel:
+
+                        text: "Dark mode"
+                        halign: "center"
+
+
                     MDSwitch:
 
-                        pos_hint: {"center_x": 0.5}
                         on_active: app.on_switch_active(*args)
 
 
-
-
-                    MDLabel:
-                        text: "test"
-                        halign: "center"
 
 
 
@@ -562,16 +568,20 @@
         MDNavigationDrawer:
 
             id: nav_draw
-            radius: 0, dp(16), dp(16), 0
+            radius: 0, dp(8), dp(8), 0
             enable_swiping: True
             scrim_color: app.color_scrim
             padding: 0
-            background_color: app.theme_cls.accent_dark
+            closing_time: 0.15
+            opening_time: 0.15
+            size_hint: 0.85, 1
 
             MDBoxLayout:
                 id: box
                 orientation: "vertical"
-                padding: 15
+
+                padding: [0, 20, 0, 0]
+
 
                 spacing: 7
 
@@ -580,21 +590,29 @@
                     size_hint_y: None
                     height: pic.height
                     Image:
+
                         id: pic
-                        pos_hint: {"center_x": 0.25}
+                        mode: "fill"
                         source: "assets/pfp.jpg"
+                        radius: 90
+
 
                 MDNavigationDrawerLabel:
-                    pos_hint: {"center_x": 0.77}
+                    pos_hint: {"center_x": 0.75}
                     text: "Carlos Cabrera"
 
                     text_color: "black"
 
+                MDNavigationDrawerDivider:
+                    padding: [0, 20, 0, -17]
+
+
 
                 ScrollView:
-                    id: scroll
+
                     MDList:
-                        id: list
+
+
                         OneLineListItem:
                             id: update
                             text: "Updates"
