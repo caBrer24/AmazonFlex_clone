@@ -444,38 +444,38 @@
                     pos_hint: {"top": 0.93}
 
                     OneLineRightIconListItem:
-                        text: "Personal information"
-                        secondary_text: "Secondary text here"
-
-                        IconRightWidget:
-                            icon: "arrow-right"
-
-                    TwoLineRightIconListItem:
-                        text: "Phone number"
-                        secondary_text: "+1 222-333-4444"
+                        text: "[size=18]Personal information[/size]"
 
 
                         IconRightWidget:
                             icon: "arrow-right"
 
+                    TwoLineRightIconListItem:
+                        text: "[size=18]Phone number[/size]"
+                        secondary_text: "[size=18]+1 222-333-4444[/size]"
+
+
+                        IconRightWidget:
+                            icon: "arrow-right"
+
 
                     TwoLineRightIconListItem:
-                        text: "Version info"
-                        secondary_text: "1.0"
+                        text: "[size=18]Version info[/size]"
+                        secondary_text: "[size=18]1.0[/size]"
 
                         IconRightWidget:
                             icon: "arrow-right"
 
                     TwoLineRightIconListItem:
-                        text: "Transportation method"
-                        secondary_text: "Drive"
+                        text: "[size=18]Transportation method[/size]"
+                        secondary_text: "[size=18]Drive[/size]"
 
                         IconRightWidget:
                             icon: "arrow-right"
 
                     TwoLineRightIconListItem:
-                        text: "Display theme"
-                        secondary_text: "Light" if app.theme_cls.theme_style == "Light" else "Dark"
+                        text: "[size=18]Display theme[/size]"
+                        secondary_text: "[size=18]Light" if app.theme_cls.theme_style == "Light" else "Dark[/size]"
                         on_release:
                             main_screens.current = "display_theme"
                             toolbar.right_action_items = []
@@ -489,13 +489,13 @@
                                 toolbar.title = f"{self.text}".upper()
 
                     OneLineRightIconListItem:
-                        text: "View legal information"
+                        text: "[size=18]View legal information[/size]"
 
                         IconRightWidget:
                             icon: "arrow-right"
 
                     OneLineRightIconListItem:
-                        text: "Offline Maps"
+                        text: "[size=18]Offline Maps[/size]"
 
                         IconRightWidget:
                             icon: "arrow-right"
@@ -615,7 +615,7 @@
 
                         OneLineListItem:
                             id: update
-                            text: "Updates"
+                            text: "[size=18]Updates[/size]"
 
 
                             on_release:
@@ -627,7 +627,7 @@
 
 
                         OneLineListItem:
-                            text: "Today's itinerary"
+                            text: "[size=18]Today's itinerary[/size]"
 
                             on_release:
                                 main_screens.current = "itinerary"
@@ -636,7 +636,7 @@
                                 toolbar.title = "                         ITINERARY"
 
                         OneLineListItem:
-                            text: "Schedule"
+                            text: "[size=18]Schedule[/size]"
 
                             on_release:
 
@@ -646,43 +646,43 @@
                                 toolbar.title = ""
 
                         OneLineListItem:
-                            text: "Dashboard"
+                            text: "[size=18]Dashboard[/size]"
                             on_release:
                                 toolbar.right_action_items = []
-                                toolbar.title = f"                        {self.text}".upper()
+                                toolbar.title = f"                        DASHBOARD"
                                 nav_draw.set_state('close')
                                 main_screens.current = "dashboard"
 
 
                         OneLineListItem:
-                            text: "Learning Portal"
+                            text: "[size=18]Learning Portal[/size]"
                             on_release:
-                                toolbar.title = f"                  {self.text}".upper()
+                                toolbar.title = f"                  LEARNING PORTAL"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "learning"
 
                         OneLineListItem:
-                            text: "Feedback"
+                            text: "[size=18]Feedback[/size]"
                             on_release:
-                                toolbar.title = f"                          {self.text}".upper()
+                                toolbar.title = f"                          FEEDBACK"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "feedback"
 
                         OneLineListItem:
-                            text: "Settings"
+                            text: "[size=18]Settings[/size]"
                             on_release:
-                                toolbar.title = f"                            {self.text}".upper()
+                                toolbar.title = f"                            SETTINGS"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "settings"
 
                         OneLineListItem:
-                            text: "Connected Vehicle"
+                            text: "[size=18]Connected Vehicle[/size]"
 
                             on_release:
-                                toolbar.title = f"                {self.text}".upper()
+                                toolbar.title = f"                CONNECTED VEHICLE"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "vehicles"
