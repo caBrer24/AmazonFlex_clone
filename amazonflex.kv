@@ -379,9 +379,10 @@
         spacing: 25
         size_hint: 1, 0.08
         pos_hint: {"top": 1}
+        opposite_colors: True
+        set_bars_colors: True
 
-        title: "                Updates"
-
+        anchor_title: "left"
         md_bg_color: "#3D3B40"
         specific_text_color: "white"
 
@@ -402,6 +403,12 @@
 
                 MDLabel:
                     text: "Updates"
+                    halign: "center"
+
+            MDScreen:
+                name: "itinerary"
+                MDLabel:
+                    text: "Itinerary"
                     halign: "center"
 
 
@@ -472,14 +479,14 @@
                         on_release:
                             main_screens.current = "display_theme"
                             toolbar.right_action_items = []
-                            toolbar.title = f"         DISPLAY THEME"
+                            toolbar.title = "DISPLAY THEME"
 
                         IconRightWidget:
                             icon: "arrow-right"
                             on_release:
                                 main_screens.current = "display_theme"
                                 toolbar.right_action_items = []
-                                toolbar.title = f"         DISPLAY THEME"
+                                toolbar.title = f"{self.text}".upper()
 
                     OneLineRightIconListItem:
                         text: "View legal information"
@@ -562,7 +569,7 @@
             background_color: app.theme_cls.accent_dark
 
             MDBoxLayout:
-
+                id: box
                 orientation: "vertical"
                 padding: 15
 
@@ -585,33 +592,46 @@
 
 
                 ScrollView:
-
+                    id: scroll
                     MDList:
+                        id: list
                         OneLineListItem:
-
+                            id: update
                             text: "Updates"
 
 
                             on_release:
+                                nav_draw.set_state('close')
                                 main_screens.current = "updates"
-                                toolbar.title = f"                 {self.text}"
+
+                                toolbar.right_action_items = [['message-outline'], ['information-outline']]
+                                toolbar.title = ""
+
+
+                        OneLineListItem:
+                            text: "Today's itinerary"
+
+                            on_release:
+                                main_screens.current = "itinerary"
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = [['message-outline'], ['information-outline']]
+                                toolbar.title = "                         ITINERARY"
 
                         OneLineListItem:
                             text: "Schedule"
 
                             on_release:
-                                toolbar.title = f"               {self.text}"
+
                                 nav_draw.set_state('close')
                                 main_screens.current = "schedule"
                                 toolbar.right_action_items = [['message-outline'], ['information-outline']]
+                                toolbar.title = ""
 
                         OneLineListItem:
                             text: "Dashboard"
                             on_release:
                                 toolbar.right_action_items = []
-                                toolbar.title = f"               {self.text}"
+                                toolbar.title = f"                        {self.text}".upper()
                                 nav_draw.set_state('close')
                                 main_screens.current = "dashboard"
 
@@ -619,7 +639,7 @@
                         OneLineListItem:
                             text: "Learning Portal"
                             on_release:
-                                toolbar.title = f"           {self.text}"
+                                toolbar.title = f"                  {self.text}".upper()
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "learning"
@@ -627,7 +647,7 @@
                         OneLineListItem:
                             text: "Feedback"
                             on_release:
-                                toolbar.title = f"                 {self.text}"
+                                toolbar.title = f"                          {self.text}".upper()
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "feedback"
@@ -635,16 +655,16 @@
                         OneLineListItem:
                             text: "Settings"
                             on_release:
-                                toolbar.title = f"                {self.text}"
+                                toolbar.title = f"                            {self.text}".upper()
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "settings"
 
                         OneLineListItem:
                             text: "Connected Vehicle"
-                            text_size: 4
+
                             on_release:
-                                toolbar.title = f"         {self.text}"
+                                toolbar.title = f"                {self.text}".upper()
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "vehicles"

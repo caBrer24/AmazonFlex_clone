@@ -4,17 +4,18 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import NoTransition
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
+from kivy.clock import Clock
 
 Window.size = (350, 625)
 
 
 # •••••••
-# TODO add functionality to settings
-# TODO during weekend, align everything, figure out color problems
-# TODO due to theme switching
+
 # TODO start looking into map implementation, camera, etc
 # TODO slide button tutorial
-
+# TODO align sign out button in settings
+# TODO Itinerary screen
+# TODO make text smaller on nav_draw
 class LoginWindow(Screen):
     pass
 
@@ -39,7 +40,15 @@ class SettingScreen(Screen):
     pass
 
 class MainWindow(Screen):
-    pass
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        Clock.schedule_once(self.set_toolbar_font_size)
+
+
+    def set_toolbar_font_size(self, *args):
+        self.ids.toolbar.ids.label_title.font_size = "14sp"
+
+
 
 
 
@@ -63,8 +72,7 @@ class AmazonFlex(MDApp):
         sm.add_widget(CreateAcc(name="create_account"))
         sm.add_widget(SettingScreen(name="screen_options"))
 
-
-
+        self.theme_cls.primary_palette = "Orange"
 
         return sm
 
