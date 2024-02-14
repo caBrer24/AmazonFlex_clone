@@ -5,6 +5,8 @@ from kivy.uix.screenmanager import NoTransition
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
 from kivy.clock import Clock
+from kivymd.uix.floatlayout import MDFloatLayout
+from kivymd.uix.tab import MDTabsBase
 
 Window.size = (350, 625)
 
@@ -14,8 +16,14 @@ Window.size = (350, 625)
 # TODO start looking into map implementation, camera, etc
 # TODO slide button tutorial
 # TODO Itinerary screen
-# TODO make text smaller on nav_draw
 
+# Tab class
+
+class Tab(MDFloatLayout, MDTabsBase):
+    pass
+
+
+# Screens
 class LoginWindow(Screen):
     pass
 

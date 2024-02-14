@@ -407,9 +407,35 @@
 
             MDScreen:
                 name: "itinerary"
-                MDLabel:
-                    text: "Itinerary"
-                    halign: "center"
+
+                MDTabs:
+                    id: tabs
+
+                    tab_indicator_anim: True
+                    tab_indicator_height: '0dp'
+
+                    text_color_normal: 0.7, 0.40, 0, 1
+                    text_color_active: 'white' if app.theme_cls.theme_style == "Light" else "black"
+
+                    tab_padding: [45, 15 , 0, 15]
+                    pos_hint: {"top": 0.932}
+
+                    Tab:
+                        title: "[b][size=16]LIST[/size]"
+
+
+
+                    Tab:
+                        title: "[b][size=16]MAP[/size]"
+
+                    Tab:
+                        title: "[b][size=16]SUMMARY[/size]"
+                ScrollView:
+                    pos_hint: {"top": 0.869}
+                    MDList:
+
+                        OneLineListItem:
+                            text: "Hola"
 
 
             MDScreen:
@@ -441,7 +467,7 @@
                 name: "settings"
 
                 MDList:
-                    pos_hint: {"top": 0.93}
+                    pos_hint: {"top": 0.932}
 
                     OneLineRightIconListItem:
                         text: "[size=18]Personal information[/size]"
@@ -475,7 +501,7 @@
 
                     TwoLineRightIconListItem:
                         text: "[size=18]Display theme[/size]"
-                        secondary_text: "[size=18]Light" if app.theme_cls.theme_style == "Light" else "Dark[/size]"
+                        secondary_text: "[size=18]Light[/size]" if app.theme_cls.theme_style == "Light" else "[size=18]Dark[/size]"
                         on_release:
                             main_screens.current = "display_theme"
                             toolbar.right_action_items = []
