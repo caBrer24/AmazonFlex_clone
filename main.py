@@ -15,10 +15,10 @@ Window.size = (350, 625)
 
 # TODO start looking into map implementation, camera, etc
 # TODO slide button tutorial
-# TODO Itinerary screen
+# TODO change screen through itinerary
+# TODO Adjust width of each tab
 
 # Tab class
-
 class Tab(MDFloatLayout, MDTabsBase):
     pass
 
