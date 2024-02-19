@@ -1,3 +1,4 @@
+from kivy.properties import ListProperty
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
@@ -7,6 +8,13 @@ from kivymd.uix.dialog import MDDialog
 from kivy.clock import Clock
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.tab import MDTabsBase
+from kivymd.uix.scrollview import ScrollView
+from kivymd.uix.list import TwoLineListItem
+from kivymd.uix.list import TwoLineIconListItem
+from kivymd.uix.list import IconLeftWidget
+from kivymd.uix.list import IconRightWidget
+from kivymd.uix.list import MDList
+from kivy_garden.mapview import MapView
 
 Window.size = (350, 625)
 
@@ -23,11 +31,11 @@ class Tab(MDFloatLayout, MDTabsBase):
     pass
 
 
-# Screens
 class LoginWindow(Screen):
     pass
 
 
+# Screens
 class Credentials(Screen):
     pass
 
@@ -57,8 +65,26 @@ class MainWindow(Screen):
         self.ids.toolbar.ids.label_title.font_size = "14sp"
 
 
-class AmazonFlex(MDApp):
+class StopList(ScrollView):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
+        self.pos_hint = {"top": 1.02}
+
+        md_list = MDList()
+        self.add_widget(md_list)
+
+        for i in range(1, 25):
+            line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
+                                                 secondary_text=f"[size=14]Deliver 1 package[/size]", )
+
+            icon = IconLeftWidget(icon="map-marker-outline")
+
+            md_list.add_widget(line_item)
+            line_item.add_widget(icon)
+
+
+class AmazonFlex(MDApp):
     main_orange = "FF9843"
     disabled_orange = "F7B787"
     disabled_text_orange = "EE7214"
@@ -68,6 +94,9 @@ class AmazonFlex(MDApp):
 
     # pop up in settings
     dialog = None
+
+    # canvas color
+    bg_col = ListProperty([1, 1, 1, 1])
 
     def build(self):
         sm = ScreenManager(transition=NoTransition())
@@ -92,9 +121,11 @@ class AmazonFlex(MDApp):
     def on_switch_active(self, switch, value):
         if value:
             self.theme_cls.theme_style = "Dark"
+            self.bg_col = 0.15, 0.15, 0.15, 1
+
         else:
             self.theme_cls.theme_style = "Light"
-
+            self.bg_col = 1, 1, 1, 1
 
     def signin_disable(self):
         passw = self.root.get_screen('credentials').ids.password_input.text
@@ -122,6 +153,17 @@ class AmazonFlex(MDApp):
             )
 
         self.dialog.open()
+
+    def change_background(self, inst, bg_col):
+        if self.theme_cls.theme_style == "Dark":
+            self.bg_col = 0, 0, 0, 1
+
+        else:
+            self.bg_col = 1, 1, 1, 1
+
+
+
+
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 
-
+# ALL HAVING TO DO WITH LOGIN INTERFACE
 <LoginWindow>
     canvas.before:
         Rectangle:
@@ -7,9 +7,13 @@
             size: (450, 785)
             source: 'back_pic.png'
 
+        Color:
+            rgba: app.bg_col
+
         Rectangle:
             pos: self.pos
             size: (450, 150)
+
     BoxLayout:
         orientation: "vertical"
         padding: 25
@@ -47,7 +51,8 @@
             pos: self.pos
             size: (450, 785)
             source: 'back_pic.png'
-
+        Color:
+            rgba: app.bg_col
         Rectangle:
             pos: self.pos
             size: (450, 385)
@@ -73,7 +78,7 @@
                 font_size: "18sp"
                 bold: True
                 text: "Sign in with your\nAmazon.com account"
-                color: 'black'
+
 
         MDTextField:
             id: email
@@ -136,14 +141,17 @@
             id: forgot_pw
             text: "Forgot password"
             size_hint: 1, None
-            pos_hint: {"center_x": 0.85}
-            color: app.disabled_text_orange
+            pos_hint: {"center_x": 0.5}
+            theme_text_color: "Custom"
+            color: app.main_orange
             font_size: "13sp"
             on_release:
                 root.manager.current = "forgot_pass"
 
 <CreateAcc>
     canvas.before:
+        Color:
+            rgba: app.bg_col
         Rectangle:
             pos: self.pos
             size: self.size
@@ -266,6 +274,8 @@
 
 <ForgotPass>
     canvas.before:
+        Color:
+            rgba: app.bg_col
         Rectangle:
             pos: self.pos
             size: self.size
@@ -368,6 +378,14 @@
         text: "Your password has been reset!"
 
 
+
+
+
+
+
+
+
+
 #: import NoTransition kivy.uix.screenmanager.NoTransition
 
 <MainWindow>
@@ -421,25 +439,27 @@
                     pos_hint: {"top": 0.932}
 
                     Tab:
-                        title: "[b][size=16]LIST[/size]"
+                        title: "[b][size=16]STOPS[/size]"
+                        StopList:
 
 
 
 
                     Tab:
                         title: "[b][size=16]MAP[/size]"
-                        on_release:
-                            tab_screens.current = "map"
+                        MapView:
+                            lat: 29.75
+                            lon: -95.36
+                            zoom: 4
+
 
                     Tab:
                         title: "[b][size=16]SUMMARY[/size]"
+                        MDLabel:
+                            text: "summary"
+                            halign: "center"
 
-                ScrollView:
-                    pos_hint: {"top": 0.869}
-                    MDList:
 
-                        OneLineListItem:
-                            text: "Hola"
 
 
             MDScreen:
@@ -718,17 +738,6 @@
                                 main_screens.current = "vehicles"
 
 
-<Tab>
-    ScreenManager:
-        id: tab_screens
-        MDScreen:
-            name: "list"
-
-        MDScreen:
-            name: "map"
-
-        MDScreen:
-            name: "summary"
 
 
 
