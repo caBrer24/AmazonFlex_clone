@@ -24,7 +24,10 @@ Window.size = (350, 625)
 # TODO start looking into map implementation, camera, etc
 # TODO slide button tutorial
 # TODO change screen through itinerary
+# TODO change screen through itinerary
+# TODO change screen through itinerary
 # TODO Adjust width of each tab
+# If I wanted to reference the address on my stop list, how would I do it??
 
 # Tab class
 class Tab(MDFloatLayout, MDTabsBase):
@@ -58,11 +61,34 @@ class SettingScreen(Screen):
 
 class MainWindow(Screen):
     def __init__(self, **kw):
-        super().__init__(**kw)
+        super(MainWindow, self).__init__(**kw)
         Clock.schedule_once(self.set_toolbar_font_size)
 
     def set_toolbar_font_size(self, *args):
         self.ids.toolbar.ids.label_title.font_size = "14sp"
+
+    def on_pre_enter(self, *args):
+
+        # Definitely not an optimal way to reference my MDList but is the only thing that's worked so far
+        md_list = self.ids.main_screens.get_screen("itinerary").children[0].children[1].children[0].children[0].children[0].children[0].children[0]
+
+        for i in range(1, 25):
+            line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
+                                            secondary_text=f"[size=14]Deliver 1 package[/size]",
+                                            on_release=self.change_screen
+                                            )
+
+            icon = IconLeftWidget(icon="map-marker-outline")
+            md_list.add_widget(line_item)
+
+            line_item.add_widget(icon)
+
+    def change_screen(self, ins):
+        self.manager.current = 'in_stop_interface'
+
+
+class InStopInterface(Screen):
+    pass
 
 
 class StopList(ScrollView):
@@ -76,7 +102,8 @@ class StopList(ScrollView):
 
         for i in range(1, 25):
             line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
-                                                 secondary_text=f"[size=14]Deliver 1 package[/size]", )
+                                            secondary_text=f"[size=14]Deliver 1 package[/size]")
+
 
             icon = IconLeftWidget(icon="map-marker-outline")
 
@@ -100,16 +127,17 @@ class AmazonFlex(MDApp):
 
     def build(self):
         sm = ScreenManager(transition=NoTransition())
-        sm.add_widget(MainWindow(name='main'))
-        sm.add_widget(LoginWindow(name='login'))
-        sm.add_widget(Credentials(name='credentials'))
-        sm.add_widget(ForgotPass(name='forgot_pass'))
-        sm.add_widget(ResetPass(name='reset_pass'))
-        sm.add_widget(CreateAcc(name="create_account"))
-        sm.add_widget(SettingScreen(name="screen_options"))
+
+        screens = [MainWindow(name='main'), Credentials(name='credentials'), LoginWindow(name='login'),
+                   ForgotPass(name='forgot_pass'), ResetPass(name='reset_pass'), CreateAcc(name="create_account"),
+                   SettingScreen(name="screen_options"), InStopInterface(name="in_stop_interface")]
+
+        for screen in screens:
+            sm.add_widget(screen)
 
         self.theme_cls.primary_palette = "Orange"
         self.theme_cls.theme_style = "Light"
+
         return sm
 
     def on_checkbox_active(self, checkbox, value):
@@ -160,11 +188,5 @@ class AmazonFlex(MDApp):
 
         else:
             self.bg_col = 1, 1, 1, 1
-
-
-
-
-
-
 if __name__ == "__main__":
     AmazonFlex().run()
