@@ -84,31 +84,33 @@ class MainWindow(Screen):
             line_item.add_widget(icon)
 
     def change_screen(self, ins):
-        self.manager.current = 'in_stop_interface'
+        self.manager.current = "in_stop_interface"
 
 
 class InStopInterface(Screen):
     pass
 
 
-class StopList(ScrollView):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        self.pos_hint = {"top": 1.02}
-
-        md_list = MDList()
-        self.add_widget(md_list)
-
-        for i in range(1, 25):
-            line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
-                                            secondary_text=f"[size=14]Deliver 1 package[/size]")
-
-
-            icon = IconLeftWidget(icon="map-marker-outline")
-
-            md_list.add_widget(line_item)
-            line_item.add_widget(icon)
+# class StopList(ScrollView):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
+#
+#         self.pos_hint = {"top": 1.02}
+#
+#         md_list = MDList()
+#         self.add_widget(md_list)
+#
+#         for i in range(1, 25):
+#             line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
+#                                             secondary_text=f"[size=14]Deliver 1 package[/size]",
+#                                             on_release=self.change_screen)
+#             icon = IconLeftWidget(icon="map-marker-outline")
+#
+#             md_list.add_widget(line_item)
+#             line_item.add_widget(icon)
+#
+#     def change_screen(self, ins):
+#         InStopInterface.get_parent_window(self)
 
 
 class AmazonFlex(MDApp):
