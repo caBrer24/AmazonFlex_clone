@@ -410,8 +410,7 @@
 
 
     MDNavigationLayout:
-
-        ScreenManager:
+        MDScreenManager:
             id: main_screens
             transition: NoTransition()
 
@@ -420,11 +419,13 @@
                 name: "updates"
 
                 MDLabel:
+                    id: test_label
                     text: "Updates"
                     halign: "center"
 
             MDScreen:
                 name: "itinerary"
+                id: itinerary
 
                 MDTabs:
                     id: tabs
@@ -441,18 +442,52 @@
                     lock_swiping: True
 
                     Tab:
+
+                        id: stops
                         title: "[b][size=16]STOPS[/size]"
-                        StopList:
 
-
+                        ScrollView:
+                            pos_hint: {"top": 1.02}
+                            MDList:
+                                id: container
 
 
                     Tab:
                         title: "[b][size=16]MAP[/size]"
-                        MapView:
-                            lat: 29.75
-                            lon: -95.36
-                            zoom: 10
+
+                        MDFloatLayout:
+
+                            MDBoxLayout:
+                                orientation: "vertical"
+
+                                MapView:
+
+                                    lat: 29.75
+                                    lon: -95.36
+                                    zoom: 10
+
+
+
+                            MDFloatingActionButton:
+                                pos_hint: {"right": 0.965, "y": 0.19}
+                                type: "small"
+                                icon: "cog-outline"
+                                md_bg_color: 1, 1, 1 ,1
+                                text_color: 0, 0, 0, 1
+
+
+                            MDFloatingActionButton:
+                                pos_hint: {"right": 0.965, "y": 0.1}
+                                type: "small"
+                                icon: "navigation-variant"
+                                md_bg_color: 1, 1, 1 ,1
+                                text_color: 0, 0, 0, 1
+
+
+
+
+
+
 
 
                     Tab:
@@ -500,7 +535,7 @@
 
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
                     TwoLineRightIconListItem:
                         text: "[size=18]Phone number[/size]"
@@ -508,7 +543,7 @@
 
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
 
                     TwoLineRightIconListItem:
@@ -516,14 +551,14 @@
                         secondary_text: "[size=18]1.0[/size]"
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
                     TwoLineRightIconListItem:
                         text: "[size=18]Transportation method[/size]"
                         secondary_text: "[size=18]Drive[/size]"
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
                     TwoLineRightIconListItem:
                         text: "[size=18]Display theme[/size]"
@@ -534,7 +569,7 @@
                             toolbar.title = "                       DISPLAY THEME"
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
                             on_release:
                                 main_screens.current = "display_theme"
                                 toolbar.right_action_items = []
@@ -544,13 +579,13 @@
                         text: "[size=18]View legal information[/size]"
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
                     OneLineRightIconListItem:
                         text: "[size=18]Offline Maps[/size]"
 
                         IconRightWidget:
-                            icon: "arrow-right"
+                            icon: "chevron-right"
 
 
                 MDBoxLayout:
@@ -738,6 +773,13 @@
                                 nav_draw.set_state('close')
                                 toolbar.right_action_items = []
                                 main_screens.current = "vehicles"
+
+
+<InStopInterface>
+
+    MDLabel:
+        text: "stop"
+        halign: "center"
 
 
 
