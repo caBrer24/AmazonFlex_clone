@@ -102,6 +102,7 @@
             password_mask: "•"
             multiline: False
             line_color_normal: "grey"
+            background_width : 0
 
         GridLayout:
             cols: 2
@@ -410,7 +411,7 @@
 
 
     MDNavigationLayout:
-        MDScreenManager:
+        ScreenManager:
             id: main_screens
             transition: NoTransition()
 
@@ -484,17 +485,67 @@
                                 text_color: 0, 0, 0, 1
 
 
-
-
-
-
-
-
                     Tab:
                         title: "[b][size=16]SUMMARY[/size]"
-                        MDLabel:
-                            text: "summary"
-                            halign: "center"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            padding: "10dp"
+                            spacing: 15
+                            size_hint: 1, 0.4
+                            pos_hint: {"top": 1}
+
+                            MDBoxLayout:
+                                size_hint: 1, 1
+                                MDLabel:
+                                    text: "Work remaining"
+                                    bold: True
+                                    font_size: 24
+
+                                MDIconButton:
+                                    icon: 'information-outline'
+                                    pos_hint: {"center_y": 0.5}
+
+                            MDBoxLayout:
+                                id: stops_number
+                                orientation: "vertical"
+                                spacing: 10
+
+                                MDLabel:
+                                    text: "[b]41 stops[/b]\n[size=16]Includes 15 multi-location stops[/size]"
+                                    markup: True
+
+                                MDProgressBar:
+                                    value: 50
+                                    color: 'orange'
+                                    size_hint: 1, 0.20
+
+                            MDBoxLayout:
+                                id: locations
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "128 locations"
+                                    bold: True
+
+                                MDProgressBar:
+                                    value: 50
+                                    color: 'orange'
+                                    size_hint: 1, 0.20
+
+
+                            MDBoxLayout:
+                                id: packages
+                                orientation: "vertical"
+
+                                MDLabel:
+                                    text: "194 packages"
+                                    bold: True
+
+                                MDProgressBar:
+                                    value: 50
+                                    color: 'orange'
+                                    size_hint: 1, 0.20
 
 
 

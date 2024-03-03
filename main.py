@@ -1,6 +1,6 @@
 from kivy.properties import ListProperty
 from kivymd.app import MDApp
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.core.window import Window
 from kivy.uix.screenmanager import NoTransition
 from kivymd.uix.button import MDFlatButton
@@ -20,14 +20,8 @@ Window.size = (350, 625)
 
 
 # •••••••
-
 # TODO start looking into map implementation, camera, etc
-# TODO slide button tutorial
-# TODO change screen through itinerary
-# TODO change screen through itinerary
-# TODO change screen through itinerary
-# TODO Adjust width of each tab
-# If I wanted to reference the address on my stop list, how would I do it??
+# TODO Adjust width of each tab?
 
 # Tab class
 class Tab(MDFloatLayout, MDTabsBase):
@@ -69,8 +63,10 @@ class MainWindow(Screen):
 
     def on_pre_enter(self, *args):
 
-        # Definitely not an optimal way to reference my MDList but is the only thing that's worked so far
-        md_list = self.ids.main_screens.get_screen("itinerary").children[0].children[1].children[0].children[0].children[0].children[0].children[0]
+        # Definitely not an optimal way to reference my MDList
+        # but is the only thing that's worked so far (nested children)
+        # Did not need to access my second screen('itinerary') or ScreenManager
+        md_list = self.manager.current_screen.ids.container  # Access all ids from my current screen
 
         for i in range(1, 25):
             line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
@@ -91,28 +87,6 @@ class InStopInterface(Screen):
     pass
 
 
-# class StopList(ScrollView):
-#     def __init__(self, **kwargs):
-#         super().__init__(**kwargs)
-#
-#         self.pos_hint = {"top": 1.02}
-#
-#         md_list = MDList()
-#         self.add_widget(md_list)
-#
-#         for i in range(1, 25):
-#             line_item = TwoLineIconListItem(text=f"[size=18]{i} Country Place dr[/size]",
-#                                             secondary_text=f"[size=14]Deliver 1 package[/size]",
-#                                             on_release=self.change_screen)
-#             icon = IconLeftWidget(icon="map-marker-outline")
-#
-#             md_list.add_widget(line_item)
-#             line_item.add_widget(icon)
-#
-#     def change_screen(self, ins):
-#         InStopInterface.get_parent_window(self)
-
-
 class AmazonFlex(MDApp):
     main_orange = "FF9843"
     disabled_orange = "F7B787"
@@ -128,7 +102,7 @@ class AmazonFlex(MDApp):
     bg_col = ListProperty([1, 1, 1, 1])
 
     def build(self):
-        sm = ScreenManager(transition=NoTransition())
+        sm = ScreenManager(transition=FadeTransition(duration=0.1))
 
         screens = [MainWindow(name='main'), Credentials(name='credentials'), LoginWindow(name='login'),
                    ForgotPass(name='forgot_pass'), ResetPass(name='reset_pass'), CreateAcc(name="create_account"),
