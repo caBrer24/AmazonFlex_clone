@@ -1,9 +1,14 @@
+import random
+
+from kivy.animation import Animation
 from kivy.properties import ListProperty
+from kivy.uix.label import Label
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import Screen, ScreenManager, FadeTransition
 from kivy.core.window import Window
 from kivy.uix.screenmanager import NoTransition
-from kivymd.uix.button import MDFlatButton
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.button import MDFlatButton, MDIconButton
 from kivymd.uix.dialog import MDDialog
 from kivy.clock import Clock
 from kivymd.uix.floatlayout import MDFloatLayout
@@ -22,10 +27,16 @@ Window.size = (350, 625)
 # •••••••
 # TODO start looking into map implementation, camera, etc
 # TODO Adjust width of each tab?
+# TODO reference info menu in the correct way
+# TODO implement info menu and swipeTofinish button
 
 # Tab class
 class Tab(MDFloatLayout, MDTabsBase):
     pass
+
+
+class Box(MDBoxLayout):
+    """ Used for MDCard information purposes"""
 
 
 class LoginWindow(Screen):
@@ -54,6 +65,9 @@ class SettingScreen(Screen):
 
 
 class MainWindow(Screen):
+
+    packages = random.randint(10, 355)
+
     def __init__(self, **kw):
         super(MainWindow, self).__init__(**kw)
         Clock.schedule_once(self.set_toolbar_font_size)
@@ -164,5 +178,75 @@ class AmazonFlex(MDApp):
 
         else:
             self.bg_col = 1, 1, 1, 1
+
+    def on_inf_icon(self):
+        self.is_expanded = not self.is_expanded
+
+        card_layout = self.root.ids.card
+        canvas = self.root.ids.box_canvas
+
+        if card_layout.md_bg_color[-1] == 0:
+            card_layout.md_bg_color[-1] = 1
+            canvas.color_scrim = (0, 0, 0, 0.25)
+
+        else:
+            card_layout.md_bg_color[-1] = 0
+            canvas.color_scrim = (0, 0, 0, 0)
+
+        if self.is_expanded:
+            item = Box()
+
+            # initialze Label with 0 height and font_size
+            inside_layout = MDFloatLayout()
+            header = Label(text="About stops and locations", bold=True, color=(0, 0, 0, 1),
+                           font_size=0, size_hint=(1, None), pos_hint={"center_y": 1, "center_x": 0.35})
+            x_icon = MDIconButton(icon='close', pos_hint={"center_y": 1, "center_x": 0.95}, size_hint=(1, None),
+                                  _no_ripple_effect=True, on_press=self.close_card)
+
+            inside_layout.add_widget(x_icon)
+            inside_layout.add_widget(header)
+
+            l = Label(text="Stops are where you park your vehicle.\nLocations are where you deliver packages.\n\n"
+                           "The number may change if you're unable to\n"
+                           "deliver to certain locations, such as a locker, and\n"
+                           "need to deliver somewhere else, such as customer\n"
+                           "doorsteps. This has already been factored into\n"
+                           "your route time.",
+                      color=(0, 0, 0, 1),
+                      font_size=0,
+                      size_hint=(1, None),
+                      height=0)
+
+            item.add_widget(inside_layout)
+            item.add_widget(l)
+            card_layout.add_widget(item)
+
+            self.animate_labels(l, header)
+
+
+        else:
+            card_layout.remove_widget(card_layout.children[0])
+
+    def animate_labels(self, l, h):
+
+        duration = 0.02
+        height = 210
+
+        anim_header = Animation(height=height, font_size=20, duration=duration)
+        anim_header.start(h)
+
+        anim_label = Animation(height=height, font_size=16, duration=duration)  # animate height and font_size
+        anim_label.start(l)  # start animations
+
+    def close_card(self, ins):
+
+        card_layout = self.root.ids.card
+        self.is_expanded = False
+
+        if self.is_expanded == False:
+            card_layout.remove_widget(card_layout.children[0])
+            card_layout.md_bg_color[-1] = 0
+
+
 if __name__ == "__main__":
     AmazonFlex().run()

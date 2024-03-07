@@ -493,7 +493,7 @@
                             padding: "10dp"
                             spacing: 15
                             size_hint: 1, 0.4
-                            pos_hint: {"top": 1}
+                            pos_hint: {"top": 1.01}
 
                             MDBoxLayout:
                                 size_hint: 1, 1
@@ -518,7 +518,7 @@
                                 MDProgressBar:
                                     value: 50
                                     color: 'orange'
-                                    size_hint: 1, 0.20
+                                    size_hint: 1, 0.22
 
                             MDBoxLayout:
                                 id: locations
@@ -531,7 +531,7 @@
                                 MDProgressBar:
                                     value: 50
                                     color: 'orange'
-                                    size_hint: 1, 0.20
+                                    size_hint: 1, 0.18
 
 
                             MDBoxLayout:
@@ -539,13 +539,13 @@
                                 orientation: "vertical"
 
                                 MDLabel:
-                                    text: "194 packages"
+                                    text: f"{root.packages} packages"
                                     bold: True
 
                                 MDProgressBar:
-                                    value: 50
+                                    value: 75
                                     color: 'orange'
-                                    size_hint: 1, 0.20
+                                    size_hint: 1, 0.18
 
 
 
